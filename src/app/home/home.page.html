@@ -1,20 +1,35 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
+<style>
+  :root {
+    --ion-safe-area-top: 20px;
+    --ion-safe-area-bottom: 22px;
+  }
+</style>
+<ion-app>
+  <ion-header translucent>
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title>Gerenciador de Coleta</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+  <ion-content fullscreen>
+    <ion-card button style="text-align: center;" (click)="criarColeta(1)" >
+      <ion-card-header>
+        <!--<ion-card-subtitle>Abrir Operação</ion-card-subtitle>-->
+        <ion-card-title style="color: rgb(6, 67, 180); font-size: 20px;">INICIAR NOVA OPERAÇÃO</ion-card-title>
+      </ion-card-header>
+      <ion-card-content style="font-size: 12px; text-align: justify;">
+        Ao clica sobre esse item iniciará uma nova operação.
+        Caso tenha operação <b style="text-transform: uppercase; color: rgb(14, 209, 95);">em aberta</b>, esta operação será iniciada.
+        para criar uma nova operação lembre de finalizar a anterior.
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card style="text-align: center;">
+      <ion-card-header>
+        <ion-card-subtitle>Abrir coletas</ion-card-subtitle>
+        <ion-card-title style="color: rgb(6, 67, 180);">TODAS COLETAS</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </ion-content>
+</ion-app>

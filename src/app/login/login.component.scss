@@ -1,0 +1,65 @@
+.container {
+    padding: 15px;
+    height: 100vh;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column;
+    .logo {
+        width: 45%;
+        margin-bottom: 20px;
+    
+        @media screen and (min-width: 768px){
+            width: 20%
+        }
+    }
+
+    h1 {
+        font-family: 'MS-bold';
+        font-size: 18px;
+    }
+
+    .input-form {
+        width: 100%;
+        background: #f6f6f6;
+        border-radius: 4px;
+        border: none;
+        outline: none;
+        padding: 15px 10px;
+        margin: 10px 0;
+        font-family: 'MS-regular';
+    }
+
+    .btn-form {
+        width: 100%;
+        padding: 0 10px;
+        border-radius: 4px;
+        background: #448dd2;
+        font-size: 18px;
+        margin: 10px 0;
+        outline: none;
+        
+        height: 60px;
+        span {
+            font-family: 'MS-bold';
+            color: #fff;
+        }
+    }
+    .toast {
+        width: 100%;
+        background: #cc0202;
+        color: #fff;
+        padding: 0 15px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        p {
+            font-family: 'MS-regular',
+        }
+        a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+    }
+}  

@@ -1,0 +1,39 @@
+@import '../../theme/variables.scss';
+.container {
+    background: var(--ion-color-primary);
+    height: 100%;
+    width: 100%;
+    position: relative;
+    .center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        padding: 20px;
+    }
+    .title {
+        color: white;
+        font-size: 35px;
+        font-family: 'GoodDog';
+        line-height: 35px;
+        margin: 0;
+        padding: 0;
+    }
+    .login {
+        position: absolute;
+        width: 100%;
+        padding: 20px;
+        transition: translateY(100%);
+        .sign-in {
+            color: #ffffff;
+            text-align: center;
+            font-size: 14px;
+            line-height: 21px;
+            margin-top: 20px;
+            a {
+                color: #ffffff;
+            }
+        }
+    }
+}

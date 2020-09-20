@@ -24,3 +24,32 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@font-face {
+    font-family: 'GoodDog';
+    src: url('./assets/fonts/Gooddog/GoodDog.TTF');
+}
+
+@font-face {
+    font-family: 'Poppins-BD';
+    src: url('./assets/fonts/Poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-RG';
+    src: url('./assets/fonts/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-LT';
+    src: url('./assets/fonts/Poppins/Poppins-Light.ttf');
+}
+
+@font-face {
+    font-family: 'MS-regular';
+    src: url('./assets/fonts/MontSerrat/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'MS-bold';
+    src: url('./assets/fonts/MontSerrat/Montserrat-bold.ttf');
+}

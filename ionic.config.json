@@ -1,5 +1,8 @@
 {
-  "name": "bar-code",
-  "integrations": {},
+  "name": "aromaosystem-app",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }

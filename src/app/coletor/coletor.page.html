@@ -1,0 +1,54 @@
+<ion-app>
+  <ion-header translucent>
+    <ion-toolbar>
+      <ion-title style="align-items: left; font-weight: 500;" class="noperacao"><b>Nº de Operação: {{idParams}}</b></ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content fullscreen>
+    <p></p>
+   <!--<div class="content">
+      <ion-button expand='block' margin (click)="goToBarcodeScan()">
+        <ion-icon name="camera"></ion-icon>
+           Click to scan a barcode
+      </ion-button>
+    </div>
+    <div class="content">
+      <p class="noperacao"><b>Nº de Operação: {{idParams}}</b></p>
+    </div> -->
+    <ion-list>
+      <ion-item *ngFor="let item of result">
+        <ion-label>
+          <h2><b>{{item.numero}} - {{item.objeto}}</b></h2>
+          <h3>{{item.remetente}}</h3>
+          <p>Serviço: {{item.servico}} - Peso/Medidas: {{item.peso}}/{{item.altura}}, {{item.largura}},
+            {{item.comprimento}}, {{item.diamentro}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+  <div *ngIf="result == null">
+    <div id="container">
+      <ion-icon style="font-size: 80px; color: #c9cbcf;"  name="warning-outline"></ion-icon>
+      <p style="font-size: 22px; color: #c9cbcf;">Nenhum resultado encontrado.</p>
+    </div>
+  </div>
+
+  <ion-footer>
+    <ion-toolbar>
+      <section class="full-width">
+        <ion-button expand="block"  style="font-size: 12px;" color="success" margin (click)="finalizarOperacao()">
+          <ion-icon name="checkmark-done-outline"></ion-icon>
+          &nbsp; <b>Finalizar Operação</b>
+        </ion-button>
+        
+        <ion-button style="font-size: 14px; height: 55px;" expand='block' margin (click)="goToBarcodeScan()">
+          <ion-icon name="camera-outline"></ion-icon>
+            &nbsp; <b>Click to scan a barcode</b>
+        </ion-button>
+      </section>
+    </ion-toolbar>
+  </ion-footer>
+</ion-app>
+<br>
+

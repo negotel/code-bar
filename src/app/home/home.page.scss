@@ -22,6 +22,32 @@
   margin: 0;
 }
 
-#container a {
-  text-decoration: none;
+.content{
+  display: flex;
+  justify-content: center;
+  button{
+    align-items: center;
+  }
+  p{
+    align-items: center;
+  }
+}
+
+.noperacao{
+  font-size: 20px;
+  font-weight: 500;
+  color:rgb(21, 102, 194);
+}
+
+.btn-button {
+  width: 75%;
+  padding: 15px 0;
+  color: #fff;
+  border-radius: 4px;            
+  outline: none;
+  font-size: 18px;
+  font-weight: 400;
+  background: #00a9d3;
+  margin-top: 10px;
+  align-self: flex-end;
 }

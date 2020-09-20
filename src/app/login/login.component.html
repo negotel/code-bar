@@ -1,0 +1,12 @@
+<div class="container">
+    <ion-icon name="cube-outline" style="font-size: 80px; color: #1c81df;" ></ion-icon>
+    <h1>Coletor de Operação</h1>
+    <form [formGroup]="formLogin" (ngSubmit)="login()">
+        <input type="text" placeholder="Placa" class="input-form" formControlName="placa">
+        <input type="password" placeholder="Senha" class="input-form" formControlName="senha">
+        <button class="btn-form" [disabled]="formLogin.invalid">
+            <span *ngIf="loading">Entrar</span>
+            <div class="loader" *ngIf="!loading">Loading...</div>
+        </button>
+    </form>
+  </div>
