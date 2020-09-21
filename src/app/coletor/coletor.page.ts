@@ -58,11 +58,11 @@ export class ColetorPage implements OnInit {
           .catch((erro) => {
             this.presentToast(erro['error'].messagem, 'danger');
           })
-          this.dismiss();
+        this.dismiss();
       }).catch(err => {
         this.presentToast(err, 'danger');
       });
-      this.dismiss();
+    this.dismiss();
   }
 
   goToCreateCode() {
@@ -91,16 +91,22 @@ export class ColetorPage implements OnInit {
   }
 
   async finalizarOperacao() {
+    
     this.loadingAwait();
-    await this.operacao.finalizar(this.idParams)
-    .then((response) => {
-      this.presentToast(response['messagem'], 'success');
-      this.router.navigate([`/home`]);
-    })
-    .catch((erro) => {
-      console.log(erro)
-      this.presentToast(erro['error'].messagem, 'danger');
-    })
+    if (this.result == null) {
+      this.dismiss();
+      this.presentToast('Essa operação não pode ser finalizada, pois não contem nenhum registro.', 'warning');
+    } else {
+      await this.operacao.finalizar(this.idParams)
+        .then((response) => {
+          this.presentToast(response['messagem'], 'success');
+          this.router.navigate([`/home`]);
+        })
+        .catch((erro) => {
+          console.log(erro)
+          this.presentToast(erro['error'].messagem, 'danger');
+        })
+    }
     this.dismiss();
   }
 
@@ -130,7 +136,7 @@ export class ColetorPage implements OnInit {
     }).then(a => {
       a.present().then(() => {
         if (!this.loading) {
-          a.dismiss().then(() => {});
+          a.dismiss().then(() => { });
         }
       })
     });
@@ -140,7 +146,6 @@ export class ColetorPage implements OnInit {
     this.loading = false;
     return await this.loadingController.dismiss().then(() => { })
   }
-
 
   async testeconsultaObjeto(id, objeto) {
     this.loadingAwait();

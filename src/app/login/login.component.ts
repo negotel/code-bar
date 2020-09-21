@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import {  Validator, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
 
 import { LoginService } from '../services/login.service';
 
@@ -11,6 +11,21 @@ import { LoginService } from '../services/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+  constructor(
+    private router: Router,
+    public toastController: ToastController,
+    private fb: FormBuilder,
+    private loginService: LoginService){
+      this.formLogin = this.fb.group({
+        placa: ['', Validators.required],
+        senha: ['', Validators.required]
+      })
+    };
+
+  ngOnInit(): void {
+    
+  }
 
   formLogin: FormGroup;  
   loading = true;
@@ -23,16 +38,6 @@ export class LoginComponent implements OnInit {
     return this.formLogin.controls.senha;
   }
 
-  constructor(private router: Router,
-              public toastController: ToastController,
-              private fb: FormBuilder,
-              private loginService: LoginService)
-  {
-    this.formLogin = this.fb.group({
-      placa: ['', Validators.required],
-      senha: ['', Validators.required]
-    })
-  }
 
   ngOnInit(): void {
   }
