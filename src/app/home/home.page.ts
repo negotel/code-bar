@@ -1,3 +1,4 @@
+import { CorreiosService } from '../services/correios.service';
 import { OperacoesService } from '../services/operacoes.service';
 import { Component, OnInit } from '@angular/core';
 import { Router , ActivatedRoute} from '@angular/router';
@@ -18,11 +19,24 @@ export class HomePage implements OnInit {
     private loadingController: LoadingController,
     private operacao: OperacoesService,
     public toastController: ToastController,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private correios: CorreiosService
   ) { }
 
   async ngOnInit(){
  
+  }
+
+  async autenticaUsuarioSvp(){
+    this.loadingAwait();
+    await this.correios.autenticacao()
+    .then((response) => {
+        console.log(response);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+    this.dismiss();
   }
 
   async criarColeta(id) {
