@@ -1,10 +1,12 @@
 
 import { Component, OnInit } from '@angular/core';
-import { ToastController, LoadingController } from '@ionic/angular';
+import { ToastController, LoadingController, PopoverController } from '@ionic/angular';
 import { ObjetosService } from '../services/objetos.service';
 import { OperacoesService } from '../services/operacoes.service';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MenuHeaderPopoverComponent } from '../menu-header-popover/menu-header-popover.component';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-coletor',
@@ -18,6 +20,7 @@ export class ColetorPage implements OnInit {
   encodeData: any;
   public result = null;
   idParams;
+  userLogged;
   loading = true;
 
   constructor(
@@ -27,20 +30,26 @@ export class ColetorPage implements OnInit {
     public toastController: ToastController,
     public barcodeCtrl: BarcodeScanner,
     private objetos: ObjetosService,
+    private popoverCtrl: PopoverController,
     private operacao: OperacoesService) { }
 
   async ngOnInit() {
+    await this.obterDadosUsuarioLogado();
     await this.idParams == this.getIdParams();
-    this.obterRegitros();
+    await this.obterRegitros();
   }
 
-  async goToBarcodeScan() {
+  obterDadosUsuarioLogado(){
+    this.userLogged = JSON.parse(sessionStorage.getItem('user'));
+  }
+
+  async scannearCodigoBarra() {
     const options: BarcodeScannerOptions = {
       preferFrontCamera: false,
       showFlipCameraButton: false,
       showTorchButton: false,
       torchOn: false,
-      prompt: 'Coloque o código de barras dentro da área de digitalização',
+      prompt: 'Coloque o código de barras dentro da área digitalização',
       resultDisplayDuration: 500,
       formats: 'CODE_128',
       orientation: 'portrait',
@@ -51,11 +60,11 @@ export class ColetorPage implements OnInit {
         this.loadingAwait();
         this.scannedData = barcodeData;
         this.objetos.consulta(this.idParams, this.scannedData.text)
-          .then((response) => {
+          .subscribe((response) => {
             this.loadingAwait();
             this.result = response['data'];
-          })
-          .catch((erro) => {
+            this.dismiss();
+          },(erro) => {
             this.presentToast(erro['error'].messagem, 'danger');
           })
         this.dismiss();
@@ -77,21 +86,8 @@ export class ColetorPage implements OnInit {
     this.idParams = this.activatedRoute.snapshot.params.id
   }
 
-  async obterRegitros() {
-    this.loadingAwait();
-    await this.objetos.obter(this.idParams)
-      .then((response) => {
-        this.result = response['data'];
-      })
-      .catch((erro) => {
-        this.presentToast(erro['error'].messagem, 'danger');
-        this.result = erro['error'].data;
-      })
-    this.dismiss();
-  }
-
   async finalizarOperacao() {
-    
+
     this.loadingAwait();
     if (this.result == null) {
       this.dismiss();
@@ -107,6 +103,19 @@ export class ColetorPage implements OnInit {
           this.presentToast(erro['error'].messagem, 'danger');
         })
     }
+    this.dismiss();
+  }
+
+  async obterRegitros() {
+    this.loadingAwait();
+    await this.objetos.obter(this.idParams)
+      .then((response) => {
+        this.result = response['data'];
+      })
+      .catch((erro) => {
+        this.presentToast(erro['error'].messagem, 'danger');
+        this.result = erro['error'].data;
+      })
     this.dismiss();
   }
 
@@ -132,7 +141,6 @@ export class ColetorPage implements OnInit {
     this.loading = true;
     return await this.loadingController.create({
       message: 'Aguarde, carregando dados...',
-      duration: 500,
     }).then(a => {
       a.present().then(() => {
         if (!this.loading) {
@@ -146,17 +154,21 @@ export class ColetorPage implements OnInit {
     this.loading = false;
     return await this.loadingController.dismiss().then(() => { })
   }
-
+ /**
+  * PZ569096639BR
+  * PZ663821193BR
+  * PZ663814612BR
+  */
   async testeconsultaObjeto(id, objeto) {
     this.loadingAwait();
-    await this.objetos.consulta(this.idParams, 'PZ569096639BR')
-      .then((response) => {
+    await this.objetos.consulta(this.idParams, 'OM017195685BR')
+      .subscribe((response) =>{
         this.result = response['data'];
-      })
-      .catch((erro) => {
+        this.dismiss();
+      },(erro) => {
         this.presentToast(erro['error'].messagem, 'danger');
-        this.result = erro['error'].data;
+        this.result = erro['error'].data; 
+        this.dismiss();
       })
-    this.dismiss();
   }
 }

@@ -1,60 +1,59 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController, ToastController } from '@ionic/angular';
-import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
-
-import { LoginService } from '../services/login.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-primeiro-acesso',
+  templateUrl: './primeiro-acesso.page.html',
+  styleUrls: ['./primeiro-acesso.page.scss'],
 })
-export class LoginComponent implements OnInit {
+export class PrimeiroAcessoPage implements OnInit {
 
   constructor(
     private router: Router,
     public toastController: ToastController,
     private loadingController: LoadingController,
-    private fb: FormBuilder,
-    private login: LoginService) {
-    this.formLogin = this.fb.group({
+    private fb: FormBuilder,) {
+    this.formPrimeiroAcesso = this.fb.group({
+      chave: ['', Validators.required],
       placa: ['', Validators.required],
       senha: ['', Validators.required]
     })
-  };
-
-  ngOnInit(): void {
-
   }
 
-  formLogin: FormGroup;
+  ngOnInit() {
+  }
+
+  formPrimeiroAcesso: FormGroup;
   loading = true;
 
-  get getBoard() {
-    return this.formLogin.controls.placa;
+  get getNome(){
+    return this.formPrimeiroAcesso.controls.chave;
   }
 
-  get getPassword() {
-    return this.formLogin.controls.senha;
+  get getPlaca(){
+    return this.formPrimeiroAcesso.controls.placa;
   }
 
-  async logar() {
+  get getSenha(){
+    return this.formPrimeiroAcesso.controls.senha;
+  }
+  
+  async cadastrarSenha(){
+
+  }
+  /*async cadastrarSenha() {
     this.loadingAwait();
-    await this.login.autenticacao(this.formLogin.value).subscribe((response) =>{
-      this.setSession(response)
-      this.login.userAutenticado();
-      this.router.navigate(['/home']);
-    }, (erro)=> {
+    await this.login.auteMeuPrimeiroAcesso(this.formPrimeiroAcesso.value).subscribe((response) =>{
+      this.router.navigate(['/login']);
+      this.presentToast(response['message'].messagem, 'success');
+    }, 
+    (erro)=> {
       this.presentToast(erro['error'].messagem, 'danger');
     })
     this.dismiss();
-  }
-
-  setSession(user) {
-    const userLogged = JSON.stringify(user)
-    sessionStorage.setItem('user', userLogged)
-  }
+  }*/
 
   async presentToast(message, color) {
     const toast = await this.toastController.create({
@@ -91,7 +90,7 @@ export class LoginComponent implements OnInit {
     return await this.loadingController.dismiss().then(() => { })
   }
 
-  pagePrimeiroAcesso(){
-    this.router.navigate(['/primeiro-acesso']);
+  pageLogin(){
+    this.router.navigate(['/login']);
   }
 }

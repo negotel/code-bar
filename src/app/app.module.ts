@@ -1,17 +1,18 @@
+import { PrimeiroAcessoPage } from './primeiro-acesso/primeiro-acesso.page';
+import { ColetorPage } from './coletor/coletor.page';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { HTTP } from '@ionic-native/http/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { SplashComponent } from './splash/splash.component';
 import { LoginComponent } from './login/login.component';
 import {BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
@@ -20,17 +21,19 @@ import {BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
   entryComponents: [],
   imports: [
     BrowserModule, 
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(),
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    HttpClientJsonpModule, 
+    HttpClientJsonpModule,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     BarcodeScanner,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    HTTP,
+    ColetorPage,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]
 })

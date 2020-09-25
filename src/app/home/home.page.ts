@@ -1,3 +1,4 @@
+import { HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { CorreiosService } from '../services/correios.service';
 import { OperacoesService } from '../services/operacoes.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,6 +15,9 @@ export class HomePage implements OnInit {
   public listaDados;
   public idParams;
   loading = true;
+  userLogged;
+
+
   constructor(
     private router: Router,
     private loadingController: LoadingController,
@@ -24,24 +28,22 @@ export class HomePage implements OnInit {
   ) { }
 
   async ngOnInit(){
- 
+    await this.obterDadosUsuarioLogado();
+  }
+
+  obterDadosUsuarioLogado(){
+    this.userLogged = JSON.parse(sessionStorage.getItem('user'));
   }
 
   async autenticaUsuarioSvp(){
     this.loadingAwait();
-    await this.correios.autenticacao()
-    .then((response) => {
-        console.log(response);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+    await this.correios.autenticacao();
     this.dismiss();
   }
 
-  async criarColeta(id) {
+  async criarOperacao() {
     this.loadingAwait();
-    await this.operacao.iniciar(id)
+    await this.operacao.iniciar(this.userLogged.data.id)
       .then((response) => {
         this.listaDados = response['data'];
         this.lote(this.listaDados.id);
@@ -57,6 +59,7 @@ export class HomePage implements OnInit {
       this.router.navigate([`/coletor/${id}`])
     }
 
+
     async loadingAwait(){
       this.loading = true;
       return await this.loadingController.create({
@@ -69,7 +72,6 @@ export class HomePage implements OnInit {
         })
       });
     }
-  
     async dismiss(){
       this.loading = false;
       return await this.loadingController.dismiss().then(() => {})
@@ -78,7 +80,6 @@ export class HomePage implements OnInit {
     async presentToast(message, color) {
       const toast = await this.toastController.create({
         message: message,
-        duration: 5000,
         position: 'top',
         color: color,
         cssClass: 'my-custom-class',

@@ -18,9 +18,13 @@ export class LoginService {
     private http: HttpClient,
   ) { }
 
-  login(login): Observable<any> {   
-    return this.http.post(`${environment.URL_API}/${this.url_login}`, login)
+  autenticacao(login) { 
+   return this.http.get(`${environment.URL_API}/${this.url_login}?placa=${login.placa}&senha=${login.senha}`);
   }
+
+  auteMeuPrimeiroAcesso(dados) { 
+    return this.http.get(`${environment.URL_API}/${this.url_login}?chave=${dados.chave}&placa=${dados.placa}&senha=${dados.senha}`);
+   }
 
   userAutenticado() {
     this.userAuthenticated = true;

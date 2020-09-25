@@ -1,0 +1,17 @@
+<div class="container">
+  <ion-icon name="barcode-sharp" style="font-size: 80px; color: #448dd2;"></ion-icon>
+  <h1>
+    Cadastrar Senha de acesso<br>
+    <small style="font-size: 10px;">Preencha todos os campos*</small>
+  </h1>
+  <form [formGroup]="formPrimeiroAcesso" (ngSubmit)="cadastrarSenha()">
+    <input type="text" placeholder="Chave de ativação" class="input-form" formControlName="chave">
+    <input type="text" placeholder="Placa do veiculo" class="input-form" formControlName="placa">
+    <input type="password" placeholder="Digite sua senha" class="input-form" formControlName="senha">
+    <button class="btn-form" [disabled]="formPrimeiroAcesso.invalid">
+        <span>Enviar</span>
+    </button>
+</form>
+<br>
+<span style="font-size: 16px; font-weight: 500; color: #448dd2; text-transform: uppercase;" (click)="pageLogin()">Ja tenho acesso!</span>
+</div>

@@ -2,8 +2,13 @@
   <ion-header translucent>
     <ion-toolbar>
       <ion-title style="align-items: left; font-weight: 500;" class="noperacao"><b>Nº de Operação: {{idParams}}</b></ion-title>
+      
+      <ion-buttons slot="end" buttom (click)="finalizarOperacao()" >
+        <ion-icon name="checkmark-done-outline"></ion-icon>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
+
   <ion-content fullscreen>
     <p></p>
    <!--<div class="content">
@@ -37,12 +42,12 @@
   <ion-footer>
     <ion-toolbar>
       <section class="full-width">
-        <ion-button expand="block"  style="font-size: 12px;" color="success" margin (click)="finalizarOperacao()">
+        <!--<ion-button expand="block"  style="font-size: 12px;" color="success" margin (click)="finalizarOperacao()">
           <ion-icon name="checkmark-done-outline"></ion-icon>
           &nbsp; <b>Finalizar Operação</b>
         </ion-button>
-        
-        <ion-button style="font-size: 14px; height: 55px;" expand='block' margin (click)="goToBarcodeScan()">
+        <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox>-->
+        <ion-button style="font-size: 14px; height: 55px;" expand='block' margin (click)="scannearCodigoBarra()">
           <ion-icon name="camera-outline"></ion-icon>
             &nbsp; <b>Click to scan a barcode</b>
         </ion-button>
@@ -50,5 +55,4 @@
     </ion-toolbar>
   </ion-footer>
 </ion-app>
-<br>
 

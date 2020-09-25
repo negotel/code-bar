@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: 'home',
@@ -12,6 +12,14 @@ const routes: Routes = [
   {
     path: 'coletor/:id',
     loadChildren: () => import('./coletor/coletor.module').then( m => m.ColetorPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.component').then( m => m.LoginComponent)
+  },
+  {
+    path: 'primeiro-acesso',
+    loadChildren: () => import('./primeiro-acesso/primeiro-acesso.module').then( m => m.PrimeiroAcessoPageModule)
   }
 ];
 

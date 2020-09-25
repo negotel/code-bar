@@ -10,7 +10,7 @@ export class ObjetosService {
   constructor(private http: HttpClient) { }
 
   consulta(id, objeto){
-    return this.http.get(`${environment.URL_API}/objetos?id_operacao=${id}&objeto=${objeto}`).toPromise();
+    return this.http.get(`${environment.URL_API}/objetos?id_operacao=${id}&objeto=${objeto}`);
   }
 
   obter(id){
