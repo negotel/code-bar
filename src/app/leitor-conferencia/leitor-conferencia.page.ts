@@ -1,20 +1,17 @@
-
+import { ObjetosService } from './../services/objetos.service';
+import { OperacoesService } from './../services/operacoes.service';
 import { Component, OnInit } from '@angular/core';
-import { ToastController, LoadingController, PopoverController } from '@ionic/angular';
-import { ObjetosService } from '../services/objetos.service';
-import { OperacoesService } from '../services/operacoes.service';
-import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
-import { Router, ActivatedRoute } from '@angular/router';
-import { MenuHeaderPopoverComponent } from '../menu-header-popover/menu-header-popover.component';
-import { JsonPipe } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoadingController, ToastController } from '@ionic/angular';
+import { BarcodeScanner,BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
-  selector: 'app-coletor',
-  templateUrl: './coletor.page.html',
-  styleUrls: ['./coletor.page.scss'],
+  selector: 'app-leitor-conferencia',
+  templateUrl: './leitor-conferencia.page.html',
+  styleUrls: ['./leitor-conferencia.page.scss'],
 })
+export class LeitorConferenciaPage implements OnInit {
 
-export class ColetorPage implements OnInit {
   scannedData: any;
   encodedData: '';
   encodeData: any;
@@ -27,20 +24,24 @@ export class ColetorPage implements OnInit {
     private router: Router,
     private loadingController: LoadingController,
     private activatedRoute: ActivatedRoute,
-    public toastController: ToastController,
-    public barcodeCtrl: BarcodeScanner,
     private objetos: ObjetosService,
-    private popoverCtrl: PopoverController,
-    private operacao: OperacoesService) { }
+    private operacao: OperacoesService,
+    public barcodeCtrl: BarcodeScanner,
+    private toastController: ToastController,
+    ) { }
 
   async ngOnInit() {
-    await this.obterDadosUsuarioLogado();
-    await this.idParams == this.getIdParams();
+    await this.idParams == this.getIdParams();    
     await this.obterRegitros();
+    this.dismissTost();
+    if(this.result === null){
+      this.presentToast('Essa operação não contem nenhum registro', 'danger');
+      this.router.navigate([`agf-conferencia`]);
+    }
   }
 
-  obterDadosUsuarioLogado(){
-    this.userLogged = JSON.parse(sessionStorage.getItem('user'));
+  getIdParams() {
+    this.idParams = this.activatedRoute.snapshot.params.id
   }
 
   async scannearCodigoBarra() {
@@ -57,12 +58,20 @@ export class ColetorPage implements OnInit {
 
     await this.barcodeCtrl.scan(options).then(
       barcodeData => {
+        this.dismissTost();
         this.loadingAwait();
         this.scannedData = barcodeData;
-        this.objetos.consulta(this.idParams, this.scannedData.text)
+        this.objetos.conferiOperacao(this.idParams, this.scannedData.text)
           .subscribe((response) => {
             this.loadingAwait();
             this.result = response['data'];
+
+            if(this.result === null){
+              this.presentToast('Conferencia finalizada com sucesso', 'success');
+              this.router.navigate([`agf-conferencia`]);
+            }else{
+              this.presentToast(response['messagem'], 'success');
+            }
             this.dismiss();
           },(erro) => {
             this.presentToast(erro['error'].messagem, 'danger');
@@ -74,17 +83,6 @@ export class ColetorPage implements OnInit {
     this.dismiss();
   }
 
-  goToCreateCode() {
-    this.barcodeCtrl.encode(this.barcodeCtrl.Encode.TEXT_TYPE, this.encodeData).then((encodedData) => {
-      this.encodeData = encodedData;
-    }, (err) => {
-      console.log('Error: ', err);
-    });
-  }
-
-  getIdParams() {
-    this.idParams = this.activatedRoute.snapshot.params.id
-  }
 
   async finalizarOperacao() {
     this.loadingAwait();
@@ -107,7 +105,7 @@ export class ColetorPage implements OnInit {
 
   async obterRegitros() {
     this.loadingAwait();
-    await this.objetos.obter(this.idParams)
+    await this.objetos.obterRegistroColeta(this.idParams)
       .then((response) => {
         this.result = response['data'];
       })
@@ -153,6 +151,11 @@ export class ColetorPage implements OnInit {
     this.loading = false;
     return await this.loadingController.dismiss().then(() => { })
   }
+
+  async dismissTost(){
+    this.loading = false;
+    return await this.toastController.dismiss().then(() => {})
+  }
  /**
   * PZ569096639BR
   * PZ663821193BR
@@ -160,9 +163,10 @@ export class ColetorPage implements OnInit {
   */
   async testeconsultaObjeto() {
     this.loadingAwait();
-    await this.objetos.consulta(this.idParams, 'OM017195685BR')
+    await this.objetos.conferiOperacao(this.idParams, 'OM017195685BR')
       .subscribe((response) =>{
         this.result = response['data'];
+        this.presentToast(response['messagem'], 'success');
         this.dismiss();
       },(erro) => {
         this.presentToast(erro['error'].messagem, 'danger');

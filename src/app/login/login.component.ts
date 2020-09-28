@@ -41,13 +41,20 @@ export class LoginComponent implements OnInit {
 
   async logar() {
     this.loadingAwait();
+    this.loading = false;
     await this.login.autenticacao(this.formLogin.value).subscribe((response) =>{
-      this.setSession(response)
+      
+      this.setSession(response);
       this.login.userAutenticado();
-      this.router.navigate(['/home']);
+      if(response['data'].nivel == 'cliente'){
+        this.router.navigate(['/home']);
+      }else{
+        this.router.navigate(['/agf-conferencia']);
+      }
     }, (erro)=> {
       this.presentToast(erro['error'].messagem, 'danger');
     })
+    this.loading = true;
     this.dismiss();
   }
 
@@ -60,6 +67,7 @@ export class LoginComponent implements OnInit {
     const toast = await this.toastController.create({
       message: message,
       position: 'top',
+      duration: 5000,
       color: color,
       cssClass: 'my-custom-class',
       buttons: [
@@ -89,9 +97,5 @@ export class LoginComponent implements OnInit {
   async dismiss() {
     this.loading = false;
     return await this.loadingController.dismiss().then(() => { })
-  }
-
-  pagePrimeiroAcesso(){
-    this.router.navigate(['/primeiro-acesso']);
   }
 }

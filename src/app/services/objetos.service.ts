@@ -16,4 +16,12 @@ export class ObjetosService {
   obter(id){
     return this.http.get(`${environment.URL_API}/objetos?id_operacao=${id}`).toPromise();
   }
+
+  conferiOperacao(id, objeto){
+    return this.http.get(`${environment.URL_API}/conferi-operacao?acao=conferencia&id_operacao=${id}&objeto=${objeto}`);
+  }
+
+  obterRegistroColeta(id){
+    return this.http.get(`${environment.URL_API}/conferi-operacao?acao=obter&id_operacao=${id}`).toPromise();
+  }
 }

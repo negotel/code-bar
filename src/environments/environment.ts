@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  URL_API: 'https://api.teste.onpostlog.com.br/app'
+  URL_API: 'https://pageexpress.aromaosystem.com.br'
 };
 
 /*

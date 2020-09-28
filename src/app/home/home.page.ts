@@ -1,5 +1,4 @@
 import { HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
-import { CorreiosService } from '../services/correios.service';
 import { OperacoesService } from '../services/operacoes.service';
 import { Component, OnInit } from '@angular/core';
 import { Router , ActivatedRoute} from '@angular/router';
@@ -23,8 +22,7 @@ export class HomePage implements OnInit {
     private loadingController: LoadingController,
     private operacao: OperacoesService,
     public toastController: ToastController,
-    private activatedRoute: ActivatedRoute,
-    private correios: CorreiosService
+    private activatedRoute: ActivatedRoute
   ) { }
 
   async ngOnInit(){
@@ -33,12 +31,6 @@ export class HomePage implements OnInit {
 
   obterDadosUsuarioLogado(){
     this.userLogged = JSON.parse(sessionStorage.getItem('user'));
-  }
-
-  async autenticaUsuarioSvp(){
-    this.loadingAwait();
-    await this.correios.autenticacao();
-    this.dismiss();
   }
 
   async criarOperacao() {

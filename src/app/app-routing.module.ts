@@ -18,8 +18,12 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.component').then( m => m.LoginComponent)
   },
   {
-    path: 'primeiro-acesso',
-    loadChildren: () => import('./primeiro-acesso/primeiro-acesso.module').then( m => m.PrimeiroAcessoPageModule)
+    path: 'agf-conferencia',
+    loadChildren: () => import('./agf-conferencia/agf-conferencia.module').then( m => m.AgfConferenciaPageModule)
+  },
+  {
+    path: 'leitor-conferencia/:id',
+    loadChildren: () => import('./leitor-conferencia/leitor-conferencia.module').then( m => m.LeitorConferenciaPageModule)
   }
 ];
 

@@ -5,11 +5,8 @@
         <input type="text" placeholder="Placa" class="input-form" formControlName="placa">
         <input type="password" placeholder="Senha" class="input-form" formControlName="senha">
         <button class="btn-form" [disabled]="formLogin.invalid">
-            <span *ngIf="loading">Entrar</span>
-            <div class="loader" *ngIf="!loading">Loading...</div>
+            <span>Entrar</span>
         </button>
     </form>
-    <br>
-    <span style="font-size: 16px; font-weight: 500; color: #448dd2; text-transform: uppercase;" (click)="pagePrimeiroAcesso()">Meu Primeiro Acesso!</span>
   </div>
   
