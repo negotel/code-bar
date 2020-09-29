@@ -9,7 +9,7 @@
   </ion-header>
 
   <ion-content fullscreen>
-   <app-camera></app-camera>
+   <!--<app-camera></app-camera>-->
     <ion-list>
       <ion-item *ngFor="let item of result">
         <ion-label>
@@ -32,7 +32,7 @@
   <ion-footer>
     <ion-toolbar>
       <section class="full-width">
-        <ion-button style="font-size: 14px; height: 55px;" expand='block' margin (click)="testeconsultaObjeto()">
+        <ion-button style="font-size: 14px; height: 55px;" expand='block' margin (click)="scannearCodigoBarra()">
           <ion-icon name="camera-outline"></ion-icon>
             &nbsp; <b>Click to scan a barcode</b>
         </ion-button>
