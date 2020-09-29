@@ -10,5 +10,5 @@ export class CameraComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {}
-
+  
 }

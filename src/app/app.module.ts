@@ -31,7 +31,6 @@ import {BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
     SplashScreen,
     BarcodeScanner,
     HTTP,
-    ColetorPage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]

@@ -15,8 +15,8 @@ import { ColetorPage } from './coletor.page';
     FormsModule,
     IonicModule,
     ColetorPageRoutingModule,
-    CameraComponent
   ],
-  declarations: [ColetorPage]
+  declarations: [ColetorPage, 
+    CameraComponent]
 })
 export class ColetorPageModule {}
