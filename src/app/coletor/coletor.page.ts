@@ -5,8 +5,6 @@ import { ObjetosService } from '../services/objetos.service';
 import { OperacoesService } from '../services/operacoes.service';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MenuHeaderPopoverComponent } from '../menu-header-popover/menu-header-popover.component';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-coletor',
@@ -72,6 +70,19 @@ export class ColetorPage implements OnInit {
         this.presentToast(err, 'danger');
       });
     this.dismiss();
+  }
+
+  async testeconsultaObjeto() {
+    this.loadingAwait();
+    await this.objetos.consulta(this.idParams, 'OM017195685BR')
+      .subscribe((response) =>{
+        this.result = response['data'];
+        this.dismiss();
+      },(erro) => {
+        this.presentToast(erro['error'].messagem, 'danger');
+        this.result = erro['error'].data; 
+        this.dismiss();
+      })
   }
 
   goToCreateCode() {
@@ -158,16 +169,4 @@ export class ColetorPage implements OnInit {
   * PZ663821193BR
   * PZ663814612BR
   */
-  async testeconsultaObjeto() {
-    this.loadingAwait();
-    await this.objetos.consulta(this.idParams, 'OM017195685BR')
-      .subscribe((response) =>{
-        this.result = response['data'];
-        this.dismiss();
-      },(erro) => {
-        this.presentToast(erro['error'].messagem, 'danger');
-        this.result = erro['error'].data; 
-        this.dismiss();
-      })
-  }
 }

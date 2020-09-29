@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  URL_API: 'https://pageexpress.aromaosystem.com.br'
+  //URL_API: 'https://pageexpress.aromaosystem.com.br'
+  URL_API: 'http://localhost/ler-arquivo'
 };
 
 /*

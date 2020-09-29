@@ -1,4 +1,3 @@
-import { PrimeiroAcessoPage } from './primeiro-acesso/primeiro-acesso.page';
 import { ColetorPage } from './coletor/coletor.page';
 
 import { NgModule } from '@angular/core';

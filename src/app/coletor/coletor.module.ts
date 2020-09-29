@@ -1,3 +1,4 @@
+import { CameraComponent } from './../camera/camera.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { ColetorPage } from './coletor.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ColetorPageRoutingModule
+    ColetorPageRoutingModule,
+    CameraComponent
   ],
   declarations: [ColetorPage]
 })

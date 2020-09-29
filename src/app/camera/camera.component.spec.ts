@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { MenuHeaderPopoverComponent } from './menu-header-popover.component';
+import { CameraComponent } from './camera.component';
 
-describe('MenuHeaderPopoverComponent', () => {
-  let component: MenuHeaderPopoverComponent;
-  let fixture: ComponentFixture<MenuHeaderPopoverComponent>;
+describe('CameraComponent', () => {
+  let component: CameraComponent;
+  let fixture: ComponentFixture<CameraComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MenuHeaderPopoverComponent ],
+      declarations: [ CameraComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MenuHeaderPopoverComponent);
+    fixture = TestBed.createComponent(CameraComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
