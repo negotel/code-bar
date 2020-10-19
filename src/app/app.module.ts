@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import {BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
+
 @NgModule({
   declarations: [AppComponent, LoginComponent],
   entryComponents: [],

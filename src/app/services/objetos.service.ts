@@ -17,6 +17,10 @@ export class ObjetosService {
     return this.http.get(`${environment.URL_API}/objetos?id_operacao=${id}`).toPromise();
   }
 
+  todaOperacoes(id){
+    return this.http.get(`${environment.URL_API}/todas-operacoes?id_motorista=${id}`).toPromise();
+  }
+
   conferiOperacao(id, objeto){
     return this.http.get(`${environment.URL_API}/conferi-operacao?acao=conferencia&id_operacao=${id}&objeto=${objeto}`);
   }

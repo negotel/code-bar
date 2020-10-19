@@ -16,7 +16,7 @@ export class HomePage implements OnInit {
   loading = true;
   userLogged;
 
-
+  
   constructor(
     private router: Router,
     private loadingController: LoadingController,
@@ -34,7 +34,8 @@ export class HomePage implements OnInit {
   }
 
   async criarOperacao() {
-    this.loadingAwait();
+   // this.loadingAwait();
+
     await this.operacao.iniciar(this.userLogged.data.id)
       .then((response) => {
         this.listaDados = response['data'];
@@ -51,6 +52,10 @@ export class HomePage implements OnInit {
       this.router.navigate([`/coletor/${id}`])
     }
 
+
+    todasOperacao(){
+      this.router.navigate([`/operacoes`])
+    }
 
     async loadingAwait(){
       this.loading = true;

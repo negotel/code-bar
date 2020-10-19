@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ToastController, LoadingController, PopoverController } from '@ionic/angular';
 import { ObjetosService } from '../services/objetos.service';
 import { OperacoesService } from '../services/operacoes.service';
@@ -20,6 +20,9 @@ export class ColetorPage implements OnInit {
   idParams;
   userLogged;
   loading = true;
+  dynamicColor: string;
+
+
 
   constructor(
     private router: Router,
@@ -29,13 +32,22 @@ export class ColetorPage implements OnInit {
     public barcodeCtrl: BarcodeScanner,
     private objetos: ObjetosService,
     private popoverCtrl: PopoverController,
-    private operacao: OperacoesService) { }
+    private operacao: OperacoesService,
+    private elementRef:ElementRef) { }
 
   async ngOnInit() {
     await this.obterDadosUsuarioLogado();
     await this.idParams == this.getIdParams();
     await this.obterRegitros();
   }
+
+  updateColor(color) {
+    this.dynamicColor = color;
+  }
+
+  setStyle(value: string): void {
+    this.elementRef.nativeElement.style.setProperty('ion-app', value); 
+}
 
   obterDadosUsuarioLogado(){
     this.userLogged = JSON.parse(sessionStorage.getItem('user'));
@@ -74,7 +86,7 @@ export class ColetorPage implements OnInit {
 
   async testeconsultaObjeto() {
     this.loadingAwait();
-    await this.objetos.consulta(this.idParams, 'OM017195685BR')
+    await this.objetos.consulta(this.idParams, 'sPZ463714679BR') /* PZ663814612BR */
       .subscribe((response) =>{
         this.result = response['data'];
         this.dismiss();

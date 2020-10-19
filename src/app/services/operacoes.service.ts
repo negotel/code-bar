@@ -18,7 +18,7 @@ export class OperacoesService {
   finalizar(idOperacao){
     return this.http.get(`${environment.URL_API}/lote?acao=finalizar&id_operacao=${idOperacao}`).toPromise();
   }
-
+  
   conferencia(){
     return this.http.get(`${environment.URL_API}/operacao-em-conferencia`).toPromise();
   }

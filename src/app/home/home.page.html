@@ -1,29 +1,49 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
-<style>
-  :root {
-    --ion-safe-area-top: 20px;
-    --ion-safe-area-bottom: 22px;
-  }
-</style>
-<ion-app>
-  <ion-header translucent>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<ion-header translucent>
     <ion-toolbar>
-      <ion-title>Gerenciador de Coleta</ion-title>
+        <ion-title>Gerenciador de Coleta</ion-title>
     </ion-toolbar>
-  </ion-header>
+</ion-header>
+<ion-content>
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <div class="card text-center shadow bg-white rounded" (click)="criarOperacao()">
+                    <div class="card-body">
+                        <img style="align-items: center;" src="assets/barcode-scanner-2.png" width="80" alt="">
+                        <p class="card-text">Nova Operação</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card text-center shadow bg-white rounded" (click)="todasOperacao()">
+                    <div class="card-body">
+                        <img style="align-items: center;" src="assets/add-list.png" width="80" alt="">
+                        <p class="card-text">Todas Operação</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>
 
-  <ion-content fullscreen>
-    <ion-card button style="text-align: center;" (click)="criarOperacao()" >
-      <ion-card-header>
-        <!--<ion-card-subtitle>Abrir Operação</ion-card-subtitle>-->
-        <ion-card-title style="color: rgb(6, 67, 180); font-size: 20px;">INICIAR NOVA OPERAÇÃO</ion-card-title>
-      </ion-card-header>
-      <ion-card-content style="font-size: 12px; text-align: justify;">
-        Ao clica sobre esse item iniciará uma nova operação.
-        Caso tenha operação <b style="text-transform: uppercase; color: rgb(14, 209, 95);">em aberta</b>, esta operação será iniciada.
-        para criar uma nova operação lembre de finalizar a anterior.
-      </ion-card-content>
-    </ion-card>
-    
-  </ion-content>
-</ion-app>
+<!--<ion-app>
+    <ion-header translucent>
+        <ion-toolbar>
+            <ion-title>Gerenciador de Coleta</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content fullscreen>
+        <ion-card button style="text-align: center;" (click)="criarOperacao()">
+            <ion-card-header>
+                <ion-card-subtitle>Abrir Operação</ion-card-subtitle>
+                <ion-card-title style="color: rgb(6, 67, 180); font-size: 20px;">INICIAR NOVA OPERAÇÃO</ion-card-title>
+            </ion-card-header>
+            <ion-card-content style="font-size: 12px; text-align: justify;">
+                Ao clica sobre esse item iniciará uma nova operação. Caso tenha operação <b style="text-transform: uppercase; color: rgb(14, 209, 95);">em aberta</b>, esta operação será iniciada. para criar uma nova operação lembre de finalizar a anterior.
+            </ion-card-content>
+        </ion-card>
+
+    </ion-content>
+</ion-app> -->

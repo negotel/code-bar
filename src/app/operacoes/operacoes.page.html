@@ -1,0 +1,23 @@
+<ion-app>
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Todas Operações </ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content fullscreen>
+        <ion-list ng-controller="TopNavCtrl">
+            <ion-item *ngFor="let item of result">
+                <ion-label>
+                    <h3 style="text-transform: uppercase;"><b>Operação - {{item.id}}</b> </h3>
+                    <p><b>Iniciado em</b>: {{item.aberto}} </p>
+                    <p *ngIf="item.embarcado != null"><b>Embarcado em</b>: {{item.embarcado}} </p>
+                    <p *ngIf="item.fechamento != null"><b>Finalizado em</b>: {{item.fechamento}} </p>
+                </ion-label>
+                <ion-badge slot="end" *ngIf="item.status == 'aberto'">Em Aberto</ion-badge>
+                <ion-badge slot="end" *ngIf="item.status == 'embarcado'" color="warning">Embarcado</ion-badge>
+                <ion-badge slot="end" *ngIf="item.status == 'finalizado'" color="success">Finalizado</ion-badge>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-app>

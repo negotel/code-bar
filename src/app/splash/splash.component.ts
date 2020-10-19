@@ -33,9 +33,4 @@ export class SplashComponent implements OnInit {
   login() {
     this.router.navigate(['/login']);
   }
-
-  signin() {
-    this.router.navigate(['/cadastrar'])
-  }
-
 }

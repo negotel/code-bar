@@ -5,52 +5,55 @@
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-  }
-  
-  #container strong {
+    background: #E5E5E5;
+}
+
+main.inner-scroll {
+    background: red;
+}
+
+#container strong {
     font-size: 20px;
     line-height: 26px;
-  }
-  
-  #container p {
+}
+
+#container p {
     font-size: 16px;
     line-height: 22px;
-  
     color: #8c8c8c;
-  
     margin: 0;
-  }
-  
-  .content{
+}
+
+.content {
     display: flex;
     justify-content: center;
-    button{
-      align-items: center;
+    button {
+        align-items: center;
     }
-    p{
-      align-items: center;
+    p {
+        align-items: center;
     }
-  }
-  
-  .noperacao{
+}
+
+.noperacao {
     font-size: 20px;
     font-weight: 500;
-    color:rgb(21, 102, 194);
-  }
-  
-  .btn-button {
+    color: rgb(21, 102, 194);
+}
+
+.btn-button {
     width: 75%;
     padding: 15px 0;
     color: #fff;
-    border-radius: 4px;            
+    border-radius: 4px;
     outline: none;
     font-size: 18px;
     font-weight: 400;
     background: #00a9d3;
     margin-top: 10px;
     align-self: flex-end;
-  }
+}
 
-  ion-icon {
+ion-icon {
     font-size: 28px;
-  }
+}

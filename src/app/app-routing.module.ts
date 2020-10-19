@@ -18,12 +18,8 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.component').then( m => m.LoginComponent)
   },
   {
-    path: 'agf-conferencia',
-    loadChildren: () => import('./agf-conferencia/agf-conferencia.module').then( m => m.AgfConferenciaPageModule)
-  },
-  {
-    path: 'leitor-conferencia/:id',
-    loadChildren: () => import('./leitor-conferencia/leitor-conferencia.module').then( m => m.LeitorConferenciaPageModule)
+    path: 'operacoes',
+    loadChildren: () => import('./operacoes/operacoes.module').then( m => m.OperacoesPageModule)
   }
 ];
 
